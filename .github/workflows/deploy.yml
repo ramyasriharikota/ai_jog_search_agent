@@ -1,5 +1,8 @@
 name: Deploy Flask App to Azure
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:
@@ -32,4 +35,5 @@ jobs:
           app-name: "job-search-webapp"  
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: release.zip
+
 
