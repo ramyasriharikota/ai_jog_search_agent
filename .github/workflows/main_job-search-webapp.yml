@@ -1,9 +1,9 @@
-name: Deploy Python Flask App to Azure Web App
+name: Deploy Flask App to Azure
 
 on:
   push:
     branches:
-      - main
+      - main   # whenever you push to main branch
 
 jobs:
   build-and-deploy:
@@ -24,12 +24,12 @@ jobs:
           pip install -r requirements.txt
 
       - name: Zip app for deployment
-        run: |
-          zip -r release.zip .
+        run: zip -r release.zip .
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "job-search-webapp"    # 🔥 replace with your App Service name
+          app-name: "job-search-webapp"  
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: release.zip
+
